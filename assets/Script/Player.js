@@ -40,6 +40,7 @@ cc.Class({
       // this.node.on("mousemove", function (event) {
       //   console.log(event.getLocation().x)
       // });
+      cc.director.getPhysicsManager().enabled = true;
       var self = this;
       cc.eventManager.addListener({
           event: cc.EventListener.MOUSE,
@@ -49,42 +50,35 @@ cc.Class({
                     self.player_go = true;
                     self.posiX = event.getLocationX();
                     self.posiY = event.getLocationY();
-                    var diff = {
+                    self.diff = {
                       // 'x' : self.posiX - self.size.width / 2 - self.node.position.x,
                       // 'y': self.posiY - self.size.height / 2 - self.node.position.y
                       'x' : self.posiX - self.node.position.x,
                       'y': self.posiY - self.node.position.y
                     };
-                    // var dist = cc.pDistance(self.node.position, cc.p(self.posiX - self.size.width / 2, self.posiY - self.size.height / 2));
-                    var angle = Math.atan2(diff.x, diff.y);
-                    self.node.rotation = cc.radiansToDegrees(angle);
+                    // // var dist = cc.pDistance(self.node.position, cc.p(self.posiX - self.size.width / 2, self.posiY - self.size.height / 2));
+                    // var angle = Math.atan2(diff.x, diff.y);
+                    // self.node.rotation = cc.radiansToDegrees(angle);
         	},
 
         },self.node);
         this.size = cc.winSize;
+        this.rb = this.getComponent(cc.RigidBody);
+
         // this.node.rotation = 45;
     },
 
     start: function () {
-      var self = this;
-
+      // this.rb.applyForce(this.speed, cc.p(500,319));
+      console.log(this.rb);
+      console.log(cc.Impulse);
     },
 
     update: function (dt) {
-      // this.node.x = this.posiX - 480;
-      // this.node.y = this.posiY - 370;
-
-//       var action = cc.moveBy(100, this.posiX - this.size.width / 2, this.posiY-this.size.height / 2);
-// // execute the action
-//       this.node.runAction(action);
-        var vX = Math.sin(this.node.rotation * Math.PI / 180) * this.speed;
-        var vY = Math.cos(this.node.rotation * Math.PI / 180) * this.speed;
-        this.node.x += vX * dt;
-        this.node.y += vY * dt;
-
-      // this.node.x = this.posiX - size.width / 2;
-      // this.node.y = this.posiY - size.height / 2;
-
-
+        // var vX = Math.sin(this.node.rotation * Math.PI / 180) * this.speed;
+        // var vY = Math.cos(this.node.rotation * Math.PI / 180) * this.speed;
+        // this.node.x = this.posiX;
+        // this.node.y = this.posiY;
+        this.rb.linearVelocity = cc.p(this.diff.x, this.diff.y);
     },
 });
