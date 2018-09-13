@@ -108,6 +108,7 @@ cc.Class({
         // }
 
 
+
         var point = cc.p(this.diff.x, this.diff.y);
         point = this.node.parent.convertToWorldSpaceAR(point);
         this.rb.linearVelocity = point;
