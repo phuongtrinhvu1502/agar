@@ -34,6 +34,27 @@ cc.Class({
         },
     },
 
+    convertMouseCoords:function()
+    {
+      // cc.Director.getInstance();
+      var scale = cc.director.getContentScaleFactor;
+      // var origin = cc.EGLView.getViewPortRect;
+      // mouse.getLocation.x= origin.origin.x;
+      // mouse.getLocation().y -= origin.origin.y;
+      // mouse.getLocation().x /= scale;
+      // mouse.getLocation().y /= scale;
+      // var location = mouse.getLocation();
+      // // work out proportion into screen of mouse coords, then apply to world dimensions to get “proper” touch location
+      // size = cc.Director.getInstance().getWinSize();
+      // var propX = location.x / origin.width;
+      // var propY = location.y / origin.height;
+      // location.x = size.width * propX;
+      // location.y = size.height * propY;
+      // console.log(location);
+      // return location;
+      console.log(cc.EGLView);
+    },
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function () {
@@ -46,7 +67,8 @@ cc.Class({
           event: cc.EventListener.MOUSE,
           	onMouseMove: function(event)
         	{
-
+                    self.abc123 = event.getLocationInView();
+                    console.log("getLocationInView: x: " + self.abc123.x + ", y: " + self.abc123.y);
                     self.player_go = true;
                     self.posiX = event.getLocationX();
                     self.posiY = event.getLocationY();
@@ -64,21 +86,35 @@ cc.Class({
         },self.node);
         this.size = cc.winSize;
         this.rb = this.getComponent(cc.RigidBody);
-
+        // this.convertMouseCoords();
         // this.node.rotation = 45;
     },
 
     start: function () {
       // this.rb.applyForce(this.speed, cc.p(500,319));
       console.log(this.rb);
-      console.log(cc.Impulse);
+      // console.log(cc.Impulse);
+
     },
 
     update: function (dt) {
         // var vX = Math.sin(this.node.rotation * Math.PI / 180) * this.speed;
         // var vY = Math.cos(this.node.rotation * Math.PI / 180) * this.speed;
-        // this.node.x = this.posiX;
-        // this.node.y = this.posiY;
-        this.rb.linearVelocity = cc.p(this.diff.x, this.diff.y);
+        // try {
+        //   this.node.x = this.abc123.x;
+        //   this.node.y = this.abc123.y;
+        // } catch(e){
+        //
+        // }
+
+
+        var point = cc.p(this.diff.x, this.diff.y);
+        point = this.node.parent.convertToWorldSpaceAR(point);
+        this.rb.linearVelocity = point;
+
+        // this.convertMouseCoords();
+
     },
+
+
 });
