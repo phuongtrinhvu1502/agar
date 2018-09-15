@@ -48,6 +48,6 @@ module.exports = {
 	getRandom: getRandom,
 	getRandomColor: getRandomColor,
     runScaleAction: runScaleAction,
-    FoodTag:999,
-    MyHeadTag: 998,
+    FoodTag:100,
+    PlayerTag: 200,
 };

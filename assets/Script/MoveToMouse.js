@@ -54,6 +54,15 @@ cc.Class({
     // },
 
     update: function (dt) {
+      // console.log("x: " + this.node.x + ". y: " + this.node.y);
+      // if (this.node.name == 'player') {
+      //   var worldPos = this.node.convertToWorldSpace(this.node.getPosition());
+      //   var mousePos = this.mouse.convertToWorldSpace(this.mouse.getPosition());
+      //   console.log("Player: " + worldPos);
+      //   console.log("Mouse: " + mousePos);
+      // }
+
+
       this.node.x = this.posiX;
       this.node.y = this.posiY;
     },

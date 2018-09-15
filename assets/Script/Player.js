@@ -28,31 +28,10 @@ cc.Class({
         //     }
         // },
         speed: 0,
-        canvas: {
+        mouse: {
           default: null,
-          type: cc.Node
+          type: cc.Node,
         },
-    },
-
-    convertMouseCoords:function()
-    {
-      // cc.Director.getInstance();
-      var scale = cc.director.getContentScaleFactor;
-      // var origin = cc.EGLView.getViewPortRect;
-      // mouse.getLocation.x= origin.origin.x;
-      // mouse.getLocation().y -= origin.origin.y;
-      // mouse.getLocation().x /= scale;
-      // mouse.getLocation().y /= scale;
-      // var location = mouse.getLocation();
-      // // work out proportion into screen of mouse coords, then apply to world dimensions to get “proper” touch location
-      // size = cc.Director.getInstance().getWinSize();
-      // var propX = location.x / origin.width;
-      // var propY = location.y / origin.height;
-      // location.x = size.width * propX;
-      // location.y = size.height * propY;
-      // console.log(location);
-      // return location;
-      console.log(cc.EGLView);
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -67,16 +46,16 @@ cc.Class({
           event: cc.EventListener.MOUSE,
           	onMouseMove: function(event)
         	{
-                    self.abc123 = event.getLocationInView();
-                    console.log("getLocationInView: x: " + self.abc123.x + ", y: " + self.abc123.y);
-                    self.player_go = true;
-                    self.posiX = event.getLocationX();
-                    self.posiY = event.getLocationY();
+                    self.posInView = event.getLocationInView();
+                    console.log("getLocation: x: " + self.posInView.x + ", y: " + self.posInView.y);
+                    // self.player_go = true;
+                    // self.posiX = event.getLocationX();
+                    // self.posiY = event.getLocationY();
                     self.diff = {
                       // 'x' : self.posiX - self.size.width / 2 - self.node.position.x,
                       // 'y': self.posiY - self.size.height / 2 - self.node.position.y
-                      'x' : self.posiX - self.node.position.x,
-                      'y': self.posiY - self.node.position.y
+                      'x' : self.posInView.x - 479,
+                      'y': 319 - self.posInView.y
                     };
                     // // var dist = cc.pDistance(self.node.position, cc.p(self.posiX - self.size.width / 2, self.posiY - self.size.height / 2));
                     // var angle = Math.atan2(diff.x, diff.y);
@@ -84,7 +63,7 @@ cc.Class({
         	},
 
         },self.node);
-        this.size = cc.winSize;
+      //   this.size = cc.winSize;
         this.rb = this.getComponent(cc.RigidBody);
         // this.convertMouseCoords();
         // this.node.rotation = 45;
@@ -107,10 +86,8 @@ cc.Class({
         //
         // }
 
-
-
         var point = cc.p(this.diff.x, this.diff.y);
-        point = this.node.parent.convertToWorldSpaceAR(point);
+        // point = this.node.parent.convertToWorldSpaceAR(point);
         this.rb.linearVelocity = point;
 
         // this.convertMouseCoords();

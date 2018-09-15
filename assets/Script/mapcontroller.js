@@ -13,7 +13,7 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
-      
+        maxFood: 0,
         canvas: cc.Node,
     },
 
@@ -22,7 +22,7 @@ cc.Class({
         this.foodPool = new cc.NodePool('foodPool');
 
         this.addRandomFood()
-        this.addScaleControl()
+        // this.addScaleControl()
         cc.director.GlobalEvent.on('eatAFood', function (data) {
             var node = data
             this.foodPool.put(node)
@@ -30,23 +30,22 @@ cc.Class({
     },
 
     addRandomFood: function () {
-     
+
         var action = cc.repeatForever(cc.sequence(
                 cc.delayTime(this.addFoodDt),
                 cc.callFunc(function(){
-                
+
                     this.addFood()
                 }, this),
         ))
         this.node.runAction(action)
     },
     addFood: function () {
-        var maxFoodCount = cc.sys.isMobile ? 100 : 200
+        // var maxFoodCount = cc.sys.isMobile ? this.maxFood : this.maxFood
 
-        if (this.node.children.length > maxFoodCount) {
+        if (this.node.children.length > this.maxFood) {
              return
         }
-        console.log('chay x:' + this.node.width);
         var pad = 20
         var minX = pad
         var maxX = this.node.width - pad
@@ -54,9 +53,9 @@ cc.Class({
         var maxY = this.node.height - pad
         var x = Helpers.getRandom(-1400, 1400)
         var y = Helpers.getRandom(-700, 700)
-       
+
         var node
-        if (this.foodPool.size() > 0) { 
+        if (this.foodPool.size() > 0) {
             node = this.foodPool.get();
         } else {
             node = cc.instantiate(this.foodPrefab);
@@ -95,7 +94,7 @@ cc.Class({
             var listener = {
                 event: cc.EventListener.MOUSE,
                 onMouseScroll: function (event) {
-                   if (event.getScrollY() > 0) {    
+                   if (event.getScrollY() > 0) {
                         event.currentTarget.scale += 0.01
                    }
                    else{
@@ -108,11 +107,11 @@ cc.Class({
             }
             cc.eventManager.addListener(listener, this.node);
         }
-        
+
 
     },
 
-        
+
 
 
 
