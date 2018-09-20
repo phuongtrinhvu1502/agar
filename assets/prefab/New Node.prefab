@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "food",
+    "_name": "New Node",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -19,19 +19,10 @@
     "_components": [
       {
         "__id__": 2
-      },
-      {
-        "__id__": 3
-      },
-      {
-        "__id__": 4
-      },
-      {
-        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 3
     },
     "_id": "",
     "_opacity": 255,
@@ -50,17 +41,17 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 7,
-      "height": 7
+      "width": 30,
+      "height": 30
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 0.2,
+    "_scaleY": 0.2,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -53,
-      "y": -19
+      "x": -191,
+      "y": 48.4
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -78,7 +69,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "4865ab3e-ae1b-4e3e-809b-2023ba0456e4"
+      "__uuid__": "6a68fd22-ddd1-4619-8202-6ae431d9e11d"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -96,67 +87,14 @@
     "_atlas": null
   },
   {
-    "__type__": "72036BBtpFDvIVr5q+25fN9",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true
-  },
-  {
-    "__type__": "cc.RigidBody",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_type": 0,
-    "_allowSleep": true,
-    "_gravityScale": 0,
-    "_linearDamping": 0,
-    "_angularDamping": 0,
-    "_linearVelocity": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_angularVelocity": 0,
-    "_fixedRotation": false,
-    "enabledContactListener": true,
-    "bullet": false
-  },
-  {
-    "__type__": "cc.PhysicsCircleCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "tag": 100,
-    "_density": 1,
-    "_sensor": true,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_radius": 3.5
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "8a2f5fde-3b4c-4bb9-983e-1de234b8686f"
+      "__uuid__": "258d0523-c02a-481e-b199-ab292d0f7b00"
     },
-    "fileId": "7bd5fNoJjdIJa00XBfZTOLQ",
+    "fileId": "37xO5Wq1BFt4jr7QNpZAKA",
     "sync": false
   }
 ]

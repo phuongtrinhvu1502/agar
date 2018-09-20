@@ -15,18 +15,28 @@ cc.Class({
         },
         maxFood: 0,
         canvas: cc.Node,
+        foodParent: {
+          default: null,
+          type: cc.Node,
+        }
     },
 
     // use this for initialization
     onLoad: function () {
-        this.foodPool = new cc.NodePool('foodPool');
+        // this.foodPool = new cc.NodePool('foodPool');
 
-        this.addRandomFood()
+        // this.addRandomFood();
         // this.addScaleControl()
-        cc.director.GlobalEvent.on('eatAFood', function (data) {
-            var node = data
-            this.foodPool.put(node)
-        }, this)
+        // for (var i = 0 ; i < this.maxFood; i++) {
+        //   this.addFood();
+        // }
+    },
+
+    start: function () {
+      // this.rb.applyForce(this.speed, cc.p(500,319));
+      for (var i = 0 ; i < this.maxFood; i++) {
+        this.addFood();
+      }
     },
 
     addRandomFood: function () {
@@ -46,23 +56,26 @@ cc.Class({
         if (this.node.children.length > this.maxFood) {
              return
         }
-        var pad = 20
-        var minX = pad
-        var maxX = this.node.width - pad
-        var minY = pad
-        var maxY = this.node.height - pad
-        var x = Helpers.getRandom(-1400, 1400)
-        var y = Helpers.getRandom(-700, 700)
+        // var pad = 20
+        // var minX = pad
+        // var maxX = this.node.width - pad
+        // var minY = pad
+        // var maxY = this.node.height - pad
+        var x = Helpers.getRandom(-1400, 1400);
+        var y = Helpers.getRandom(-700, 700);
 
-        var node
-        if (this.foodPool.size() > 0) {
-            node = this.foodPool.get();
-        } else {
-            node = cc.instantiate(this.foodPrefab);
-        }
-        node.x = x
-        node.y = y
-        node.parent = this.node
+        // var node
+        // if (this.foodPool.size() > 0) {
+        //     node = this.foodPool.get();
+        // } else {
+          var node = cc.instantiate(this.foodPrefab);
+        // }
+        // node.x = x;
+        // node.y = y;
+        // node.parent = this.foodParent;
+        // var node = cc.instantiate(self.food);
+        node.setPosition(cc.p(x,y));
+        node.parent = this.node;
     },
 
     addScaleControl: function () {
